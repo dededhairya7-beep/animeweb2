@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeWeb - Ultimate 4K Anime Streaming Hub Ultra Pro Max 3000+</title>
+    <style>
+        /* ==========================================================================
+           01. ROOT VARIABLES & GLOBAL THEME PALETTE
+           ========================================================================== */
+        :root {
+            --bg-primary: #030107;
+            --bg-secondary: #0a0514;
+            --bg-card: #10081d;
+            --bg-elevated: #180d2b;
+            --accent-purple: #7b2cbf;
+            --accent-deep-purple: #4c1d95;
+            --accent-light: #d8b4fe;
+            --accent-pink: #f72585;
+            --accent-cyan: #4cc9f0;
+            --accent-gold: #facc15;
+            --accent-green: #10b981;
+            --text-main: #ffffff;
+            --text-muted: #a78bfa;
+            --text-dim: #7c3aed;
+            --border-color: #2e1065;
+            --glow-shadow: 0 0 25px rgba(123, 44, 191, 0.45);
+            --cyan-glow: 0 0 22px rgba(76, 201, 240, 0.65);
+            --pink-glow: 0 0 22px rgba(247, 37, 133, 0.65);
+        }
+
+        /* ==========================================================================
+           02. RESET & BASE TYPOGRAPHY
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-purple) var(--bg-primary);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding-top: 0;
+            padding-bottom: 115px;
+            overflow-x: hidden;
+            line-height: 1.5;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(123, 44, 191, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 40%, rgba(76, 201, 240, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(247, 37, 133, 0.08) 0%, transparent 50%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-purple), var(--accent-pink));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* ==========================================================================
+           03. TOP HEADER (SCROLLS NATURALLY WITH PAGE TOP)
+           ========================================================================== */
+        header {
+            background: rgba(10, 5, 20, 0.98);
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            z-index: 2600;
+            box-shadow: 0 6px 35px rgba(123, 44, 191, 0.6), 0 0 22px rgba(76, 201, 240, 0.28);
+            border-bottom: 1px solid var(--accent-deep-purple);
+            flex-wrap: wrap;
+            gap: 10px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(5, 2, 12, 0.99);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-toggle-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--accent-deep-purple);
+            color: var(--accent-light);
+            font-size: 20px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 14px rgba(123, 44, 191, 0.5);
+        }
+
+        .menu-toggle-btn:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: var(--cyan-glow);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-pink);
+            box-shadow: 0 0 18px rgba(247, 37, 133, 0.85);
+            transition: transform 0.4s ease;
+        }
+
+        .logo-img:hover {
+            transform: rotate(360deg) scale(1.08);
+        }
+
+        .logo-text-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffffff, var(--accent-pink), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 9px;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 400px;
+            margin: 0 4px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 9px 36px 9px 16px;
+            border-radius: 26px;
+            border: 1px solid var(--accent-deep-purple);
+            background: #0d0817;
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 12px rgba(0,0,0,0.8), 0 0 12px rgba(123, 44, 191, 0.3);
+        }
+
+        .search-bar:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 22px rgba(76, 201, 240, 0.75), inset 0 2px 12px rgba(0,0,0,0.8);
+            background: #150b26;
+        }
+
+        .search-clear-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 15px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .community-btn {
+            background: linear-gradient(135deg, var(--accent-purple), #4338ca);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(123, 44, 191, 0.5);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .community-btn.friend-insta {
+            background: linear-gradient(135deg, var(--accent-pink), #8338ec);
+            border-color: rgba(247, 37, 133, 0.45);
+        }
+
+        .community-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(76, 201, 240, 0.9);
+            border-color: var(--accent-cyan);
+        }
+
+        .saved-count-badge {
+            background: var(--accent-pink);
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 900;
+        }
+
+        /* ==========================================================================
+           04. SIDE DRAWER MENU (QR, PHONEPE SCANNER & QUICK TOOLS)
+           ========================================================================== */
+        .side-drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.88);
+            z-index: 2800;
+            backdrop-filter: blur(8px);
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            left: -340px;
+            width: 330px;
+            height: 100%;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            z-index: 2900;
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            box-shadow: 12px 0 45px rgba(0,0,0,0.95);
+            overflow-y: auto;
+        }
+
+        .side-drawer.open {
+            left: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+        }
+
+        .drawer-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--accent-light);
+        }
+
+        .drawer-close {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 22px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .drawer-close:hover {
+            color: #fff;
+            background: var(--accent-pink);
+        }
+
+        .drawer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            text-align: center;
+        }
+
+        .drawer-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .drawer-nav-btn {
+            background: #130b22;
+            border: 1px solid var(--border-color);
+            color: var(--accent-light);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.25s;
+        }
+
+        .drawer-nav-btn:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-cyan);
+        }
+
+        .qr-box-container {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-pink);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 0 25px rgba(247, 37, 133, 0.35);
+        }
+
+        .qr-box-container img {
+            width: 100%;
+            max-width: 195px;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--accent-deep-purple);
+        }
+
+        .drawer-caption {
+            font-size: 13px;
+            color: var(--accent-light);
+            line-height: 1.6;
+            background: #0d0817;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--accent-deep-purple);
+        }
+
+        .pay-web-btn {
+            background: linear-gradient(135deg, var(--accent-cyan), #0077b6);
+            color: #000;
+            padding: 14px;
+            border-radius: 28px;
+            border: none;
+            font-weight: 900;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 22px rgba(76, 201, 240, 0.55);
+            transition: 0.3s;
+        }
+
+        .pay-web-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 28px rgba(76, 201, 240, 0.85);
+        }
+
+        /* ==========================================================================
+           05. SECURITY CHECK & 18+ PASSWORD MODALS
+           ========================================================================== */
+        .sec-modal, .pass-modal, .saved-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 3500;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .sec-box, .pass-box {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-pink);
+            padding: 32px;
+            border-radius: 24px;
+            width: 92%;
+            max-width: 390px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(247, 37, 133, 0.55);
+            animation: modalPop 0.3s ease;
+        }
+
+        .pass-box input {
+            width: 100%;
+            padding: 14px;
+            margin: 18px 0;
+            background: #0d0817;
+            border: 1px solid var(--accent-pink);
+            border-radius: 14px;
+            color: #fff;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 3px;
+            outline: none;
+        }
+
+        .pass-box input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: var(--cyan-glow);
+        }
+
+        .pass-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: #fff;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 24px;
+            font-weight: 900;
+            font-size: 15px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(247, 37, 133, 0.75);
+            transition: 0.3s;
+        }
+
+        .pass-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .spinner {
+            width: 52px;
+            height: 52px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--accent-cyan);
+            border-right: 4px solid var(--accent-pink);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 16px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==========================================================================
+           06. GENRE FILTER & STATS TICKER BAR
+           ========================================================================== */
+        .genre-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 15px 24px;
+            background: rgba(10, 5, 20, 0.85);
+            white-space: nowrap;
+            border-bottom: 1px solid var(--border-color);
+            scrollbar-width: none;
+        }
+
+        .genre-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .genre-btn {
+            background: #130b22;
+            color: var(--text-muted);
+            border: 1px solid var(--accent-deep-purple);
+            padding: 8px 20px;
+            border-radius: 28px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .genre-btn:hover, .genre-btn.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: #fff;
+            border-color: var(--accent-light);
+            box-shadow: 0 0 18px rgba(123, 44, 191, 0.85);
+        }
+
+        /* ==========================================================================
+           07. LARGE & CRYSTAL CLEAR SPOTLIGHT HERO BANNER SLIDER
+           ========================================================================== */
+        .banner-container {
+            width: 100%;
+            height: 460px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-secondary);
+            border-bottom: 2px solid var(--accent-deep-purple);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.85);
+        }
+
+        @media (min-width: 768px) {
+            .banner-container {
+                height: 610px;
+            }
+        }
+
+        .banner-slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.9s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 22%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            filter: brightness(1.02) contrast(1.06) saturate(1.1);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(3,1,7,0.82) 16%, rgba(3,1,7,0.32) 52%, rgba(3,1,7,0.04) 100%),
+                        linear-gradient(to top, rgba(3,1,7,0.88) 8%, transparent 56%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 36px 28px;
+        }
+
+        @media (min-width: 768px) {
+            .banner-overlay {
+                padding: 52px 60px;
+            }
+        }
+
+        .spotlight {
+            font-size: 13px;
+            color: var(--accent-cyan);
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 14px rgba(0,0,0,0.95), 0 0 18px rgba(76, 201, 240, 0.9);
+        }
+
+        .banner-title {
+            font-size: 34px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.98);
+        }
+
+        @media (min-width: 768px) {
+            .banner-title {
+                font-size: 48px;
+            }
+        }
+
+        .banner-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 12px;
+            color: var(--accent-light);
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .banner-meta span {
+            background: rgba(15, 7, 32, 0.85);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-deep-purple);
+            font-weight: 700;
+        }
+
+        .banner-desc {
+            font-size: 14px;
+            color: #f3e8ff;
+            max-width: 660px;
+            margin-bottom: 22px;
+            line-height: 1.6;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.95);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .banner-desc {
+                font-size: 16px;
+            }
+        }
+
+        .banner-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .banner-btn-watch {
+            background: linear-gradient(135deg, var(--accent-pink), #d90429);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 28px;
+            border: none;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 24px rgba(247, 37, 133, 0.75);
+            transition: 0.3s;
+        }
+
+        .banner-btn-watch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(247, 37, 133, 0.95), 0 0 25px var(--accent-cyan);
+        }
+
+        .banner-btn-detail {
+            background: rgba(19, 11, 34, 0.9);
+            color: var(--accent-light);
+            padding: 12px 26px;
+            border-radius: 28px;
+            border: 1px solid var(--accent-deep-purple);
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            transition: 0.3s;
+        }
+
+        .banner-btn-detail:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-cyan);
+        }
+
+        .banner-dots {
+            position: absolute;
+            bottom: 18px;
+            right: 28px;
+            z-index: 5;
+            display: flex;
+            gap: 8px;
+        }
+
+        .banner-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .banner-dot.active {
+            width: 26px;
+            border-radius: 10px;
+            background: var(--accent-cyan);
+            box-shadow: var(--cyan-glow);
+        }
+
+        /* ==========================================================================
+           08. MAIN CONTENT CONTAINERS & ANIME CARDS GRID
+           ========================================================================== */
+        .container {
+            max-width: 1340px;
+            margin: 34px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            border-left: 5px solid var(--accent-pink);
+            padding-left: 14px;
+            color: var(--accent-light);
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(216, 180, 254, 0.45);
+        }
+
+        .view-all-btn {
+            background: #130b22;
+            color: var(--accent-light);
+            border: 1px solid var(--accent-deep-purple);
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .view-all-btn:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 18px rgba(123, 44, 191, 0.75);
+        }
+
+        .horizontal-scroll-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-purple) var(--bg-secondary);
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .anime-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        .anime-card {
+            min-width: 185px;
+            max-width: 185px;
+            background: var(--bg-secondary);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.8);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .anime-card {
+                min-width: 225px;
+                max-width: 225px;
+            }
+        }
+
+        .anime-grid .anime-card {
+            min-width: 100%;
+            max-width: 100%;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 16px 50px rgba(76, 201, 240, 0.65), 0 0 28px rgba(123, 44, 191, 0.65);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(10, 5, 20, 0.88);
+            color: var(--accent-cyan);
+            font-size: 10px;
+            font-weight: 900;
+            padding: 4px 9px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-cyan);
+            z-index: 3;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-badge.hot {
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            border-color: var(--accent-pink);
+        }
+
+        .anime-card img {
+            width: 100%;
+            height: 245px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .anime-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .anime-info {
+            padding: 13px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            background: linear-gradient(to top, var(--bg-secondary), #0d0817);
+            border-top: 1px solid rgba(123, 44, 191, 0.25);
+        }
+
+        .anime-title {
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #f3c6ff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           09. ULTRA PRO STREAMING MODAL & SMART PLAYER
+           ========================================================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3200;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            backdrop-filter: blur(18px);
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 26px;
+            max-width: 740px;
+            width: 100%;
+            padding: 26px;
+            position: relative;
+            box-shadow: 0 25px 85px rgba(76, 201, 240, 0.55), 0 0 38px rgba(123, 44, 191, 0.75);
+            text-align: center;
+            animation: modalPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 94vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.86); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            width: 36px;
+            height: 36px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            font-size: 24px;
+            line-height: 32px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.25s;
+            z-index: 15;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+            background: var(--accent-pink);
+            box-shadow: var(--pink-glow);
+        }
+
+        .player-container {
+            display: none;
+            background: #000;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: 0 0 35px rgba(76, 201, 240, 0.5);
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .player-quick-controls {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            background: #0d0817;
+            padding: 10px 14px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-deep-purple);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .player-ctrl-btn {
+            background: var(--accent-purple);
+            color: #fff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .player-ctrl-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+
+        .modal-header-flex {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            text-align: left;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-img {
+            width: 125px;
+            height: 175px;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 8px 28px rgba(76, 201, 240, 0.45);
+            flex-shrink: 0;
+        }
+
+        .modal-meta-box {
+            flex-grow: 1;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(76, 201, 240, 0.7);
+        }
+
+        .modal-details {
+            font-size: 13px;
+            color: #e9d5ff;
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+
+        .modal-action-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .save-anime-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: #fff;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 22px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 18px rgba(247, 37, 133, 0.55);
+            transition: 0.3s;
+        }
+
+        .save-anime-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 22px rgba(76, 201, 240, 0.85);
+        }
+
+        .save-anime-btn.saved {
+            background: linear-gradient(135deg, #00b4d8, var(--accent-cyan));
+            color: #000;
+            box-shadow: var(--cyan-glow);
+        }
+
+        .star-rating-box {
+            background: #0d0817;
+            border: 1px solid var(--accent-deep-purple);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 20px;
+            text-align: left;
+            box-shadow: 0 0 15px rgba(123, 44, 191, 0.25);
+        }
+
+        .star-stars {
+            font-size: 24px;
+            cursor: pointer;
+            color: #4b5563;
+            margin-top: 4px;
+            user-select: none;
+        }
+
+        .star-stars span.active-star {
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px rgba(250, 204, 21, 0.9);
+        }
+
+        .season-select-btn {
+            background: linear-gradient(135deg, #180d2b, #0d0817);
+            color: var(--accent-light);
+            text-align: left;
+            padding: 14px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 800;
+            border: 1px solid var(--accent-deep-purple);
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+        }
+
+        .season-select-btn:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 22px rgba(76, 201, 240, 0.6);
+        }
+
+        .episodes-panel {
+            display: none;
+            background: #0d0817;
+            border: 1px solid var(--accent-deep-purple);
+            border-radius: 14px;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 14px;
+            text-align: left;
+            max-height: 360px;
+            overflow-y: auto;
+        }
+
+        .ep-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--accent-light);
+            background: #130b22;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 8px rgba(123, 44, 191, 0.2);
+            gap: 8px;
+        }
+
+        .ep-row.watched {
+            border-left: 4px solid var(--accent-cyan);
+            background: #101626;
+        }
+
+        .ep-btn-group {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .ep-btn {
+            background: #180d2b;
+            color: var(--accent-light);
+            text-align: center;
+            padding: 7px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            border: 1px solid var(--accent-deep-purple);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .ep-btn:hover {
+            background: var(--accent-purple);
+            color: #fff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(76, 201, 240, 0.75);
+        }
+
+        .ep-btn.dl-btn:hover {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+        }
+
+        .discussion-section {
+            margin-top: 25px;
+            background: #0d0817;
+            border: 1px solid var(--accent-deep-purple);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: left;
+            box-shadow: 0 0 15px rgba(123, 44, 191, 0.2);
+        }
+
+        .discussion-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+        }
+
+        .comment-input-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .comment-input-box input, .comment-input-box textarea {
+            background: #130b22;
+            border: 1px solid var(--accent-deep-purple);
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .comment-input-box textarea {
+            resize: none;
+            height: 62px;
+        }
+
+        .comment-submit-btn {
+            background: var(--accent-cyan);
+            color: #000;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 12px;
+            cursor: pointer;
+            align-self: flex-end;
+            transition: 0.3s;
+            box-shadow: 0 0 12px rgba(76, 201, 240, 0.5);
+        }
+
+        .comment-submit-btn:hover {
+            box-shadow: 0 0 22px var(--accent-cyan);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 160px;
+            overflow-y: auto;
+        }
+
+        .comment-item {
+            background: #130b22;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-pink);
+            font-size: 12px;
+        }
+
+        .comment-user {
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 3px;
+        }
+
+        /* ==========================================================================
+           10. BOTTOM NAVIGATION BAR & FOOTER
+           ========================================================================== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(3, 1, 7, 0.96);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 5px;
+            z-index: 2200;
+            box-shadow: 0 -6px 30px rgba(0,0,0,0.95);
+            backdrop-filter: blur(14px);
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px 10px;
+        }
+
+        .bottom-nav-item span.icon {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .bottom-nav-item span.label {
+            font-size: 11px;
+        }
+
+        .bottom-nav-item:hover, .bottom-nav-item.active {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 12px var(--accent-cyan);
+        }
+
+        .site-footer {
+            text-align: center;
+            padding: 28px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        @media screen and (orientation: landscape) and (max-height: 600px) {
+            .modal-content {
+                max-width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                padding: 10px;
+            }
+            .player-container {
+                height: 75vh !important;
+            }
+            .modal-header-flex, .star-rating-box, .discussion-section, .episodes-box {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body id="topAnchor">
+
+    <!-- ==========================================================================
+         TOP HEADER (SCROLLS WITH TOP OF PAGE + FRIEND INSTA RESTORED)
+         ========================================================================== -->
+    <header id="mainHeader">
+        <div class="header-left">
+            <button class="menu-toggle-btn" onclick="toggleSideDrawer()" title="Open Quick Menu">☰</button>
+            <div class="logo-area" onclick="scrollToTopSmooth()">
+                <a href="https://ibb.co/xqRX0P6y" target="_blank" onclick="event.stopPropagation()">
+                    <img src="https://i.ibb.co/d4zjq1DS/IMG-20261113-151606-639.jpg" alt="AnimeWeb Logo" class="logo-img">
+                </a>
+                <div class="logo-text-wrap">
+                    <div class="logo">AnimeWeb Pro</div>
+                    <div class="logo-sub">4K Ultra Streaming</div>
+                </div>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Search Anime (Naruto, My Hero, Black Clover, Your Name)..." onkeyup="searchAnime()">
+            <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()">✕</button>
+        </div>
+        <div class="header-actions" id="topSocialBar">
+            <button class="community-btn" onclick="openSavedModal()">🔖 Saved <span class="saved-count-badge" id="savedBadge">0</span></button>
+            <a href="https://www.youtube.com/@XHATAKE-x2d" target="_blank" class="community-btn">YouTube</a>
+            <a href="https://www.instagram.com/dhair_ya4378" target="_blank" class="community-btn">Instagram</a>
+            <a href="https://www.instagram.com/" target="_blank" class="community-btn friend-insta">Friend Insta</a>
+            <button class="community-btn" onclick="alert('🔥 Welcome to KD GROUPS Official Anime Hub!')">KD GROUPS</button>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         SIDE DRAWER MENU
+         ========================================================================== -->
+    <div class="side-drawer-overlay" id="drawerOverlay" onclick="toggleSideDrawer()"></div>
+    <div class="side-drawer" id="sidedrawer">
+        <div class="drawer-header">
+            <div class="drawer-title">📌 Quick Menu</div>
+            <button class="drawer-close" onclick="toggleSideDrawer()">&times;</button>
+        </div>
+        <div class="drawer-content">
+            <div class="drawer-nav-list">
+                <button class="drawer-nav-btn" onclick="toggleSideDrawer(); scrollToTopSmooth();"><span>🏠 Home & Spotlight (Top)</span><span>&gt;</span></button>
+                <button class="drawer-nav-btn" onclick="toggleSideDrawer(); document.getElementById('homeSection').scrollIntoView({behavior:'smooth'});"><span>🔥 Popular Ultra Anime</span><span>&gt;</span></button>
+                <button class="drawer-nav-btn" onclick="toggleSideDrawer(); document.getElementById('ongoingSection').scrollIntoView({behavior:'smooth'});"><span>⚡ Ongoing & Trending</span><span>&gt;</span></button>
+                <button class="drawer-nav-btn" onclick="toggleSideDrawer(); openSavedModal();"><span>🔖 My Saved Watchlist</span><span>&gt;</span></button>
+                <button class="drawer-nav-btn" onclick="toggleSideDrawer(); promptHentaiPassword();" style="border-color: var(--accent-pink); color: var(--accent-pink);"><span>🔞 18+ Hentai Hub</span><span>🔒</span></button>
+            </div>
+            <button class="pay-web-btn" onclick="payViaPhonePe()">📲 Pay (PhonePe / Scanner)</button>
+            <div class="qr-box-container">
+                <div style="font-size: 13px; font-weight: 800; color: var(--accent-light); margin-bottom: 10px;">📲 Scan QR Code</div>
+                <img src="https://i.ibb.co/0yXR4qhB/IMG-20261115-WA0000.jpg" alt="QR Code">
+            </div>
+            <div class="drawer-caption">
+                ❤️ <b>जितना हो सके उतना शेयर करो!</b><br><br>आपका एक सहयोग इस वेबसाइट को जिन्दा रखने में बहुत मदद करता है! 🚀
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SECURITY CHECK POPUP MODAL
+         ========================================================================== -->
+    <div class="sec-modal" id="secModal">
+        <div class="sec-box">
+            <div style="font-size: 17px; font-weight: 900; color: var(--accent-cyan); margin-bottom: 5px;">🔒 Security Check</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Verifying secure Google Drive download link...</div>
+            <div class="spinner"></div>
+            <div style="font-size: 13px; color: #fff; font-weight: 700;" id="secStatusText">Checking file safety...</div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         18+ HENTAI HUB PASSWORD POPUP
+         ========================================================================== -->
+    <div class="pass-modal" id="passModal">
+        <div class="pass-box">
+            <div style="font-size: 19px; font-weight: 900; color: var(--accent-pink); margin-bottom: 5px;">🔞 Restricted Area</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Enter secret PIN to unlock 18+ Hentai Hub</div>
+            <input type="password" id="hentaiPassInput" placeholder="••••" onkeyup="if(event.key==='Enter') verifyHentaiPassword()">
+            <button class="pass-btn" onclick="verifyHentaiPassword()">Unlock 🔓</button>
+            <button onclick="closePassModal()" style="background:transparent; border:none; color:var(--text-muted); margin-top:12px; cursor:pointer; font-weight:700;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SAVED WATCHLIST MODAL
+         ========================================================================== -->
+    <div class="saved-modal" id="savedModal">
+        <div class="modal-content" style="max-width: 520px;">
+            <span class="close-btn" onclick="closeSavedModal()">&times;</span>
+            <div style="font-size: 20px; font-weight: 900; color: var(--accent-cyan); margin-bottom: 15px;">🔖 Your Saved Watchlist</div>
+            <div id="savedListContainer" style="display: flex; flex-direction: column; gap: 10px; text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         GENRE FILTER BAR
+         ========================================================================== -->
+    <div class="genre-container">
+        <button class="genre-btn active" onclick="filterGenre('all', this)">All Anime</button>
+        <button class="genre-btn" onclick="filterGenre('Action', this)">Action</button>
+        <button class="genre-btn" onclick="filterGenre('Fantasy', this)">Fantasy</button>
+        <button class="genre-btn" onclick="filterGenre('Comedy', this)">Comedy</button>
+        <button class="genre-btn" onclick="filterGenre('Romance', this)">Romance</button>
+        <button class="genre-btn" onclick="filterGenre('Adventure', this)">Adventure</button>
+        <button class="genre-btn" onclick="filterGenre('Sports', this)">Sports</button>
+    </div>
+
+    <!-- ==========================================================================
+         LARGE & CRYSTAL CLEAR SPOTLIGHT HERO BANNER SLIDER
+         ========================================================================== -->
+    <div class="banner-container" id="bannerSlider">
+        <div class="banner-slide active" data-id="0">
+            <img src="https://i.ibb.co/MD8JLL5n/IMG-840bb266-8c05-4ad5-b4a4-c4616b83e3c5.jpg" alt="Naruto Banner">
+            <div class="banner-overlay">
+                <div class="spotlight">#1 Ultra Spotlight</div>
+                <div class="banner-title">Naruto Shippuden</div>
+                <div class="banner-meta"><span>Season 18</span><span>Best Popular</span><span>4K Ultra</span><span>HINDI / SUB</span></div>
+                <div class="banner-desc">Ninja adventures, epic battles, and the journey to become the greatest Hokage while facing legendary foes.</div>
+                <div class="banner-btns">
+                    <button class="banner-btn-watch" onclick="openModalByName('Naruto Shippuden')">▶ Watch Now</button>
+                    <button class="banner-btn-detail" onclick="openModalByName('Naruto Shippuden')">Episodes &gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="banner-slide" data-id="1">
+            <img src="https://i.ibb.co/ycSJpsXB/IMG-9398c472-5d35-49ce-8ab1-acf78b2774ab.jpg" alt="My Hero Academia Banner">
+            <div class="banner-overlay">
+                <div class="spotlight">#2 Hero Spotlight</div>
+                <div class="banner-title">My Hero Academia</div>
+                <div class="banner-meta"><span>Action / Hero</span><span>4K Popular</span><span>4K Ultra</span><span>SUB</span></div>
+                <div class="banner-desc">A quirkless boy Izuku Midoriya inherits powers from the greatest hero All Might to walk the path of a true champion.</div>
+                <div class="banner-btns">
+                    <button class="banner-btn-watch" onclick="openModalByName('My Hero Academia')">▶ Watch Now</button>
+                    <button class="banner-btn-detail" onclick="openModalByName('My Hero Academia')">Episodes &gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="banner-slide" data-id="2">
+            <img src="https://i.ibb.co/sJdqh3mM/IMG-1914578d-d74c-4940-8cf5-23d69aa35cb2.jpg" alt="Black Clover Banner">
+            <div class="banner-overlay">
+                <div class="spotlight">#3 Magic Spotlight</div>
+                <div class="banner-title">Black Clover</div>
+                <div class="banner-meta"><span>Fantasy / Magic</span><span>4K Ultra</span><span>SUB</span></div>
+                <div class="banner-desc">Asta, a boy born without magic in a world where magic is everything, fights with anti-magic to become Wizard King.</div>
+                <div class="banner-btns">
+                    <button class="banner-btn-watch" onclick="openModalByName('Black Clover')">▶ Watch Now</button>
+                    <button class="banner-btn-detail" onclick="openModalByName('Black Clover')">Detail &gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="banner-slide" data-id="3">
+            <img src="https://i.ibb.co/5gmQ2VBq/IMG-d3e42a9a-5acd-433a-953f-894f5ec1c8dd.jpg" alt="The Classroom of the Elite Banner">
+            <div class="banner-overlay">
+                <div class="spotlight">#4 Ongoing Spotlight</div>
+                <div class="banner-title">The Classroom of the Elite</div>
+                <div class="banner-meta"><span>Psychological</span><span>Ongoing</span><span>4K Ultra</span><span>SUB</span></div>
+                <div class="banner-desc">Students of Tokyo Metropolitan Advanced Nurturing High School compete in a ruthless meritocratic system.</div>
+                <div class="banner-btns">
+                    <button class="banner-btn-watch" onclick="openModalByName('The Classroom of the Elite')">▶ Watch Now</button>
+                    <button class="banner-btn-detail" onclick="openModalByName('The Classroom of the Elite')">Detail &gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="banner-slide" data-id="4">
+            <img src="https://i.ibb.co/VcqBTWnk/IMG-17a668e3-8261-4caa-9037-b017121d5285.jpg" alt="Alya Banner">
+            <div class="banner-overlay">
+                <div class="spotlight">#5 Popular Spotlight</div>
+                <div class="banner-title">Alya Sometimes Hides Her Feelings in Russian</div>
+                <div class="banner-meta"><span>Romance</span><span>Comedy</span><span>4K Ultra</span><span>SUB</span></div>
+                <div class="banner-desc">Alisa Mikhailovna Kujou whispers sweet feelings in Russian, unaware her seatmate understands every word.</div>
+                <div class="banner-btns">
+                    <button class="banner-btn-watch" onclick="openModalByName('Alya Sometimes Hides Her Feelings in Russian')">▶ Watch Now</button>
+                    <button class="banner-btn-detail" onclick="openModalByName('Alya Sometimes Hides Her Feelings in Russian')">Detail &gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="banner-dots">
+            <span class="banner-dot active" onclick="goToSlide(0)"></span>
+            <span class="banner-dot" onclick="goToSlide(1)"></span>
+            <span class="banner-dot" onclick="goToSlide(2)"></span>
+            <span class="banner-dot" onclick="goToSlide(3)"></span>
+            <span class="banner-dot" onclick="goToSlide(4)"></span>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         18+ HENTAI HUB SECTION (PASSWORD PROTECTED: 9209)
+         ========================================================================== -->
+    <div class="container" id="hentaiSection" style="display: none;">
+        <div class="section-header">
+            <div class="section-title" style="border-left-color: var(--accent-pink); color: var(--accent-pink);">🔥 18+ Hentai & Ecchi Hub (Unlocked)</div>
+            <button class="view-all-btn" onclick="lockHentaiSection()">Lock Again 🔒</button>
+        </div>
+        <div class="anime-grid" id="hentaiGrid"></div>
+    </div>
+
+    <!-- ==========================================================================
+         1. POPULAR ULTRA ANIME SECTION
+         ========================================================================== -->
+    <div class="container" id="homeSection">
+        <div class="section-header">
+            <div class="section-title">🔥 Popular Ultra Anime</div>
+            <div style="display: flex; gap: 10px;">
+                <button class="view-all-btn" onclick="promptHentaiPassword()">🔞 18+ Hub</button>
+                <button class="view-all-btn" id="popularToggleBtn" onclick="togglePopularViewAll()">View All &gt;</button>
+            </div>
+        </div>
+        <div class="horizontal-scroll-container" id="popularScroll"></div>
+        <div class="anime-grid" id="popularGrid" style="display: none; margin-top: 15px;"></div>
+    </div>
+
+    <!-- ==========================================================================
+         2. ONGOING & TRENDING SECTION (INCLUDES CLASSROOM OF THE ELITE & YOUR NAME)
+         ========================================================================== -->
+    <div class="container" id="ongoingSection">
+        <div class="section-header">
+            <div class="section-title">⚡ Ongoing & Trending Action</div>
+        </div>
+        <div class="anime-grid" id="trendingVerticalGrid"></div>
+    </div>
+
+    <!-- ==========================================================================
+         BOTTOM NAVIGATION BAR (HOME GOES ALL THE WAY TO TOP)
+         ========================================================================== -->
+    <nav class="bottom-nav">
+        <button type="button" class="bottom-nav-item active" onclick="scrollToTopSmooth(); setActiveNav(this);">
+            <span class="icon">🏠</span>
+            <span class="label">Home</span>
+        </button>
+        <a href="#popularScroll" class="bottom-nav-item" onclick="setActiveNav(this)">
+            <span class="icon">🗂️</span>
+            <span class="label">Browse</span>
+        </a>
+        <button type="button" class="bottom-nav-item" onclick="document.getElementById('searchInput').focus(); setActiveNav(this);">
+            <span class="icon">🔍</span>
+            <span class="label">Search</span>
+        </button>
+        <a href="#ongoingSection" class="bottom-nav-item" onclick="setActiveNav(this)">
+            <span class="icon">🔥</span>
+            <span class="label">Ongoing</span>
+        </a>
+        <button type="button" class="bottom-nav-item" onclick="promptHentaiPassword()">
+            <span class="icon">🔞</span>
+            <span class="label">18+ Hub</span>
+        </button>
+    </nav>
+
+    <!-- ==========================================================================
+         ULTRA PRO MODAL & IN-APP STREAMING PLAYER
+         ========================================================================== -->
+    <div class="modal" id="animeModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            
+            <div class="player-container" id="playerContainer">
+                <iframe id="videoPlayerFrame" src="" allowfullscreen></iframe>
+            </div>
+
+            <div class="player-quick-controls" id="playerQuickControls">
+                <button class="player-ctrl-btn" onclick="playPreviousEpisode()">⏮ Prev Episode</button>
+                <span id="nowPlayingIndicator" style="font-size: 12px; color: var(--accent-cyan); font-weight: 800;">Playing Ep 1</span>
+                <button class="player-ctrl-btn" onclick="playNextEpisode()">Next Episode ⏭</button>
+            </div>
+
+            <div class="modal-header-flex">
+                <img id="modalImg" class="modal-img" src="" alt="Anime Poster">
+                <div class="modal-meta-box">
+                    <div id="modalTitle" class="modal-title"></div>
+                    <div id="modalDetails" class="modal-details"></div>
+                    <div class="modal-action-row">
+                        <button class="save-anime-btn" id="saveBtn" onclick="toggleSaveAnime()">🔖 Save Anime</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="star-rating-box">
+                <div style="font-size: 13px; font-weight: 800; color: var(--accent-light);">⭐ Rate This Anime:</div>
+                <div class="star-stars" id="starContainer">
+                    <span onclick="rateAnime(1)">★</span><span onclick="rateAnime(2)">★</span><span onclick="rateAnime(3)">★</span><span onclick="rateAnime(4)">★</span><span onclick="rateAnime(5)">★</span>
+                </div>
+                <div id="ratingFeedback" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Click stars to vote!</div>
+            </div>
+
+            <div class="episodes-box" id="modalSeasonsBox"></div>
+
+            <div class="discussion-section">
+                <div class="discussion-title">💬 Fan Discussion & Reviews</div>
+                <div class="comment-input-box">
+                    <input type="text" id="commentUser" placeholder="Your Name (e.g. Naruto Fan)...">
+                    <textarea id="commentText" placeholder="Write your review or thoughts..."></textarea>
+                    <button class="comment-submit-btn" onclick="postComment()">Post Review 🚀</button>
+                </div>
+                <div class="comments-list" id="commentsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SITE FOOTER
+         ========================================================================== -->
+    <footer class="site-footer">
+        <div style="font-size: 16px; font-weight: 900; color: var(--accent-light); margin-bottom: 6px;">AnimeWeb Pro Max 4K</div>
+        <div>Powered by KD GROUPS &amp; XHATAKE • All Google Drive Links &amp; Streams Verified</div>
+    </footer>
+
+    <script>
+        /* ==========================================================================
+           MASTER ANIME DATABASE (ALL DRIVE LINKS & UPDATED POSTERS PRESERVED)
+           ========================================================================== */
+        const animeData = [
+            { 
+                name: "Alya Sometimes Hides Her Feelings in Russian", 
+                genre: "Romance", 
+                section: "popular",
+                badge: "POPULAR",
+                rating: "⭐ 4.9", 
+                views: "👁️ 185K", 
+                img: "https://i.ibb.co/VcqBTWnk/IMG-17a668e3-8261-4caa-9037-b017121d5285.jpg", 
+                desc: "Alisa Mikhailovna Kujou whispers sweet feelings in Russian, unaware her seatmate Masachika Kuze understands every single word.",
+                seasons: [
+                    { 
+                        seasonTitle: "Season 1 (12 Episodes)", 
+                        episodes: [ 
+                            { epNum: "Ep 1", watch: "https://drive.google.com/file/d/1iNzMDHQl6U3kUn7olx_iBY7uBZ9TKFtS/preview", dl: "https://drive.google.com/uc?export=download&id=1iNzMDHQl6U3kUn7olx_iBY7uBZ9TKFtS" },
+                            { epNum: "Ep 2", watch: "https://drive.google.com/file/d/1WNG4_auR50jWnZ6RHuNtP79EZKtwrDNK/preview", dl: "https://drive.google.com/uc?export=download&id=1WNG4_auR50jWnZ6RHuNtP79EZKtwrDNK" },
+                            { epNum: "Ep 3", watch: "https://drive.google.com/file/d/1Kp5otMGAE0HP-JmwkxzYyJ7Rg4NtjymD/preview", dl: "https://drive.google.com/uc?export=download&id=1Kp5otMGAE0HP-JmwkxzYyJ7Rg4NtjymD" },
+                            { epNum: "Ep 4", watch: "https://drive.google.com/file/d/1186Vpf1mKIypl5uBerQUuIXyqkRzKXQU/preview", dl: "https://drive.google.com/uc?export=download&id=1186Vpf1mKIypl5uBerQUuIXyqkRzKXQU" },
+                            { epNum: "Ep 5", watch: "https://drive.google.com/file/d/1ylGzUMAKWRLEf5jJA9BzuNYk9n2e1YFr/preview", dl: "https://drive.google.com/uc?export=download&id=1ylGzUMAKWRLEf5jJA9BzuNYk9n2e1YFr" },
+                            { epNum: "Ep 6", watch: "https://drive.google.com/file/d/1poN5N0vm8DDvSN03J-7S5dMJSqZ_u2Ip/preview", dl: "https://drive.google.com/uc?export=download&id=1poN5N0vm8DDvSN03J-7S5dMJSqZ_u2Ip" },
+                            { epNum: "Ep 7", watch: "https://drive.google.com/file/d/1SrzpCyaiChrrGjwStC_rMGGeO5V210te/preview", dl: "https://drive.google.com/uc?export=download&id=1SrzpCyaiChrrGjwStC_rMGGeO5V210te" },
+                            { epNum: "Ep 8", watch: "https://drive.google.com/file/d/1rV6TJIUlibV0P7du02K7a4ieIX1Zye92/preview", dl: "https://drive.google.com/uc?export=download&id=1rV6TJIUlibV0P7du02K7a4ieIX1Zye92" },
+                            { epNum: "Ep 9", watch: "https://drive.google.com/file/d/1r5wiw3b9hsAbDLwf_XSgBDTmvKpNmdFy/preview", dl: "https://drive.google.com/uc?export=download&id=1r5wiw3b9hsAbDLwf_XSgBDTmvKpNmdFy" },
+                            { epNum: "Ep 10", watch: "https://drive.google.com/file/d/1R_jj9bUQBraf8zLwU4hOiFhl5ycojjDW/preview", dl: "https://drive.google.com/uc?export=download&id=1R_jj9bUQBraf8zLwU4hOiFhl5ycojjDW" },
+                            { epNum: "Ep 11", watch: "https://drive.google.com/file/d/1SwZ7qd7Rjed7uC9vHnh8O_90K5d40CxV/preview", dl: "https://drive.google.com/uc?export=download&id=1SwZ7qd7Rjed7uC9vHnh8O_90K5d40CxV" },
+                            { epNum: "Ep 12", watch: "https://drive.google.com/file/d/1Q1AIfBoovKt2vDJHUXNdYcfq47DIaU0J/preview", dl: "https://drive.google.com/uc?export=download&id=1Q1AIfBoovKt2vDJHUXNdYcfq47DIaU0J" }
+                        ] 
+                    }
+                ]
+            },
+            { 
+                name: "The Classroom of the Elite", 
+                genre: "Action", 
+                section: "ongoing",
+                badge: "ONGOING",
+                rating: "⭐ 4.9", 
+                views: "👁️ 220K", 
+                img: "https://i.ibb.co/5gmQ2VBq/IMG-d3e42a9a-5acd-433a-953f-894f5ec1c8dd.jpg", 
+                desc: "Students of Tokyo Metropolitan Advanced Nurturing High School compete for supremacy in a ruthless meritocratic system led behind the scenes by Kiyotaka Ayanokoji.",
+                seasons: [
+                    { 
+                        seasonTitle: "Season 1 (12 Episodes)", 
+                        episodes: [ 
+                            { epNum: "Ep 1", watch: "https://drive.google.com/file/d/1uz53BB04L7Em5KEgsJQKC9yeWREq2cCD/preview", dl: "https://drive.google.com/uc?export=download&id=1uz53BB04L7Em5KEgsJQKC9yeWREq2cCD" },
+                            { epNum: "Ep 2", watch: "https://drive.google.com/file/d/1j-3BDY1-IRX7UTE7Ube-KKT5tioOfY6v/preview", dl: "https://drive.google.com/uc?export=download&id=1j-3BDY1-IRX7UTE7Ube-KKT5tioOfY6v" },
+                            { epNum: "Ep 3", watch: "https://drive.google.com/file/d/1kA_yBPZngvzfU1e9QFbryFCvk9iBRq9q/preview", dl: "https://drive.google.com/uc?export=download&id=1kA_yBPZngvzfU1e9QFbryFCvk9iBRq9q" },
+                            { epNum: "Ep 4", watch: "https://drive.google.com/file/d/1305RAdlYlAOwwi8QQr9L1IA6AvUw__Ff/preview", dl: "https://drive.google.com/uc?export=download&id=1305RAdlYlAOwwi8QQr9L1IA6AvUw__Ff" },
+                            { epNum: "Ep 5", watch: "https://drive.google.com/file/d/1GYzNZlq1I-9llO7q853ym22ijTF8CNXU/preview", dl: "https://drive.google.com/uc?export=download&id=1GYzNZlq1I-9llO7q853ym22ijTF8CNXU" },
+                            { epNum: "Ep 6", watch: "https://drive.google.com/file/d/1bkesIcXuDfI-4yfbwE_T5vIm3E-a2Cf8/preview", dl: "https://drive.google.com/uc?export=download&id=1bkesIcXuDfI-4yfbwE_T5vIm3E-a2Cf8" },
+                            { epNum: "Ep 7", watch: "https://drive.google.com/file/d/1FJaOTck8JvfLjuMDh-ftqcsd2wcUO5E1/preview", dl: "https://drive.google.com/uc?export=download&id=1FJaOTck8JvfLjuMDh-ftqcsd2wcUO5E1" },
+                            { epNum: "Ep 8", watch: "https://drive.google.com/file/d/1pnoQB9xFmdqceuFr6j8w9de0Dqth3a58/preview", dl: "https://drive.google.com/uc?export=download&id=1pnoQB9xFmdqceuFr6j8w9de0Dqth3a58" },
+                            { epNum: "Ep 9", watch: "https://drive.google.com/file/d/1mhEEtbx_QlHakChEabN___Gcw5ApBkXJ/preview", dl: "https://drive.google.com/uc?export=download&id=1mhEEtbx_QlHakChEabN___Gcw5ApBkXJ" },
+                            { epNum: "Ep 10", watch: "https://drive.google.com/file/d/1EIaEhuV4s8MUKoXf4ovXV5Gb3JCwe1xt/preview", dl: "https://drive.google.com/uc?export=download&id=1EIaEhuV4s8MUKoXf4ovXV5Gb3JCwe1xt" },
+                            { epNum: "Ep 11", watch: "https://drive.google.com/file/d/133IJB8f3Ug5HkTkvxgrq-TsJ5aV9U3uv/preview", dl: "https://drive.google.com/uc?export=download&id=133IJB8f3Ug5HkTkvxgrq-TsJ5aV9U3uv" },
+                            { epNum: "Ep 12", watch: "https://drive.google.com/file/d/1ZsEU7czPjr2z3ncmsa4eFTTYsBh-5I2B/preview", dl: "https://drive.google.com/uc?export=download&id=1ZsEU7czPjr2z3ncmsa4eFTTYsBh-5I2B" }
+                        ] 
+                    }
+                ]
+            },
+            { 
+                name: "Naruto Shippuden", 
+                genre: "Action", 
+                section: "both",
+                badge: "BEST POPULAR",
+                rating: "⭐ 4.9", 
+                views: "👁️ 120K", 
+                img: "https://i.ibb.co/MD8JLL5n/IMG-840bb266-8c05-4ad5-b4a4-c4616b83e3c5.jpg", 
+                desc: "Ninja adventures, epic battles, and the journey to become Hokage.",
+                seasons: [{ 
+                    seasonTitle: "Season 18 (16 Episodes)", 
+                    episodes: [ 
+                        { epNum: "Ep 1", watch: "https://drive.google.com/file/d/1tE1Uur3shmH-2I9FoaTbeQcmUdCiae5w/preview", dl: "https://drive.google.com/uc?export=download&id=1tE1Uur3shmH-2I9FoaTbeQcmUdCiae5w" }, 
+                        { epNum: "Ep 2", watch: "https://drive.google.com/file/d/1WnSrCLk3cCFQ6hbcDpYIyrn136f1Hb4h/preview", dl: "https://drive.google.com/uc?export=download&id=1WnSrCLk3cCFQ6hbcDpYIyrn136f1Hb4h" },
+                        { epNum: "Ep 3", watch: "https://drive.google.com/file/d/1H6tiASVwIPKk-LFrKc0VWx-mouOEpc6J/preview", dl: "https://drive.google.com/uc?export=download&id=1H6tiASVwIPKk-LFrKc0VWx-mouOEpc6J" },
+                        { epNum: "Ep 4", watch: "https://drive.google.com/file/d/1VWE_-ET7CBSGcVoMYEjCkjQOIrrlR5O_/preview", dl: "https://drive.google.com/uc?export=download&id=1VWE_-ET7CBSGcVoMYEjCkjQOIrrlR5O_" },
+                        { epNum: "Ep 5", watch: "https://drive.google.com/file/d/1e9h2iYSzmFT5NW4-rt1hVYxgGFaTkK3K/preview", dl: "https://drive.google.com/uc?export=download&id=1e9h2iYSzmFT5NW4-rt1hVYxgGFaTkK3K" },
+                        { epNum: "Ep 6", watch: "https://drive.google.com/file/d/1AwkCv-qb6PvCRqHipXMicyOTq8HpPDjg/preview", dl: "https://drive.google.com/uc?export=download&id=1AwkCv-qb6PvCRqHipXMicyOTq8HpPDjg" },
+                        { epNum: "Ep 7", watch: "https://drive.google.com/file/d/1abL-8nJebGjxx_zHix1Gww5fmkcYD70M/preview", dl: "https://drive.google.com/uc?export=download&id=1abL-8nJebGjxx_zHix1Gww5fmkcYD70M" },
+                        { epNum: "Ep 8", watch: "https://drive.google.com/file/d/1kWB-9dVO7wcRDLVUYvEITwWIVBQdOuXD/preview", dl: "https://drive.google.com/uc?export=download&id=1kWB-9dVO7wcRDLVUYvEITwWIVBQdOuXD" },
+                        { epNum: "Ep 9", watch: "https://drive.google.com/file/d/1EmH1SXQ5ZpuxcR467svmQ123DbMssjMR/preview", dl: "https://drive.google.com/uc?export=download&id=1EmH1SXQ5ZpuxcR467svmQ123DbMssjMR" },
+                        { epNum: "Ep 10", watch: "https://drive.google.com/file/d/1kWB-9dVO7wcRDLVUYvEITwWIVBQdOuXD/preview", dl: "https://drive.google.com/uc?export=download&id=1kWB-9dVO7wcRDLVUYvEITwWIVBQdOuXD" },
+                        { epNum: "Ep 11", watch: "https://drive.google.com/file/d/1m_YpiQkLY34tdUbqUBE7ljALMC8j9mmg/preview", dl: "https://drive.google.com/uc?export=download&id=1m_YpiQkLY34tdUbqUBE7ljALMC8j9mmg" },
+                        { epNum: "Ep 12", watch: "https://drive.google.com/file/d/1HgRSxlS0RyCElOVAClRcZ2DRHLmOxsfp/preview", dl: "https://drive.google.com/uc?export=download&id=1HgRSxlS0RyCElOVAClRcZ2DRHLmOxsfp" },
+                        { epNum: "Ep 13", watch: "https://drive.google.com/file/d/1HgRSxlS0RyCElOVAClRcZ2DRHLmOxsfp/preview", dl: "https://drive.google.com/uc?export=download&id=1HgRSxlS0RyCElOVAClRcZ2DRHLmOxsfp" },
+                        { epNum: "Ep 14", watch: "https://drive.google.com/file/d/13uj_ul-2MbOLl5OGK2WYtLIqN8t5Uhjq/preview", dl: "https://drive.google.com/uc?export=download&id=13uj_ul-2MbOLl5OGK2WYtLIqN8t5Uhjq" },
+                        { epNum: "Ep 15", watch: "https://drive.google.com/file/d/12J1UKYv59WiFCuCM1uEBufbehgEj6MyD/preview", dl: "https://drive.google.com/uc?export=download&id=12J1UKYv59WiFCuCM1uEBufbehgEj6MyD" },
+                        { epNum: "Ep 16", watch: "https://drive.google.com/file/d/1FGkq4YFaLym2hjL3XwmJiuD0r7L16tJC/preview", dl: "https://drive.google.com/uc?export=download&id=1FGkq4YFaLym2hjL3XwmJiuD0r7L16tJC" }
+                    ] 
+                }]
+            },
+            { 
+                name: "Demon Slayer", 
+                genre: "Action", 
+                section: "both",
+                badge: "BEST POPULAR",
+                rating: "⭐ 4.8", 
+                views: "👁️ 95K", 
+                img: "https://i.ibb.co/XxC3wySN/IMG-dd564f4e-e187-427a-baba-276995a44669.jpg", 
+                desc: "Tanjiro fights demons to save his sister and avenge his family.",
+                seasons: [{ 
+                    seasonTitle: "Season 1 (20 Episodes)", 
+                    episodes: [ 
+                        { epNum: "Ep 1", watch: "https://drive.google.com/file/d/1AdjhvWtcTOj0cWTRqM2ElmdxxjYUM2w2/preview", dl: "https://drive.google.com/uc?export=download&id=1AdjhvWtcTOj0cWTRqM2ElmdxxjYUM2w2" }, 
+                        { epNum: "Ep 2", watch: "https://drive.google.com/file/d/1AdjhvWtcTOj0cWTRqM2ElmdxxjYUM2w2/preview", dl: "https://drive.google.com/uc?export=download&id=1AdjhvWtcTOj0cWTRqM2ElmdxxjYUM2w2" },
+                        { epNum: "Ep 3", watch: "https://drive.google.com/file/d/16z1HVsHRSm6RNvqeQbBg1AQriEAU_cP3/preview", dl: "https://drive.google.com/uc?export=download&id=16z1HVsHRSm6RNvqeQbBg1AQriEAU_cP3" },
+                        { epNum: "Ep 4", watch: "https://drive.google.com/file/d/1l_T7CjJAtorXS5Hx1ntKCJOv_hgzJFHZ/preview", dl: "https://drive.google.com/uc?export=download&id=1l_T7CjJAtorXS5Hx1ntKCJOv_hgzJFHZ" },
+                        { epNum: "Ep 5", watch: "https://drive.google.com/file/d/1xko4u6usIgGmhyzqRHcDrdDT9CgXd5AN/preview", dl: "https://drive.google.com/uc?export=download&id=1xko4u6usIgGmhyzqRHcDrdDT9CgXd5AN" },
+                        { epNum: "Ep 6", watch: "https://drive.google.com/file/d/1F0hjoj6aUVLiElgWtxlG2SBsjRUqUCXw/preview", dl: "https://drive.google.com/uc?export=download&id=1F0hjoj6aUVLiElgWtxlG2SBsjRUqUCXw" },
+                        { epNum: "Ep 7", watch: "https://drive.google.com/file/d/14BwvV7cqYrmonCYEHSQfETgVMJYpZw3D/preview", dl: "https://drive.google.com/uc?export=download&id=14BwvV7cqYrmonCYEHSQfETgVMJYpZw3D" },
+                        { epNum: "Ep 8", watch: "https://drive.google.com/file/d/1yrU9wz2E4qfoIutrmykVZJoH6MvBIJXE/preview", dl: "https://drive.google.com/uc?export=download&id=1yrU9wz2E4qfoIutrmykVZJoH6MvBIJXE" },
+                        { epNum: "Ep 9", watch: "https://drive.google.com/file/d/16c3S9v6JsDHRJRYR8DmtrxuiSVBf2zCS/preview", dl: "https://drive.google.com/uc?export=download&id=16c3S9v6JsDHRJRYR8DmtrxuiSVBf2zCS" },
+                        { epNum: "Ep 10", watch: "https://drive.google.com/file/d/1lpZaqXxSopXkRjJFhY329IsjNH5aaQFA/preview", dl: "https://drive.google.com/uc?export=download&id=1lpZaqXxSopXkRjJFhY329IsjNH5aaQFA" },
+                        { epNum: "Ep 11", watch: "https://drive.google.com/file/d/1toHSZy0KVlhz1g0TwQKMMNqxwV3_bEe_/preview", dl: "https://drive.google.com/uc?export=download&id=1toHSZy0KVlhz1g0TwQKMMNqxwV3_bEe_" },
+                        { epNum: "Ep 12", watch: "https://drive.google.com/file/d/1W7gf_cUlTf0q2pnnwK6VzpLN1--CctCA/preview", dl: "https://drive.google.com/uc?export=download&id=1W7gf_cUlTf0q2pnnwK6VzpLN1--CctCA" },
+                        { epNum: "Ep 13", watch: "https://drive.google.com/file/d/1_y_wQBSfQWPde9mTsg3mC0xU_tzINeSc/preview", dl: "https://drive.google.com/uc?export=download&id=1_y_wQBSfQWPde9mTsg3mC0xU_tzINeSc" },
+                        { epNum: "Ep 14", watch: "https://drive.google.com/file/d/1E_jcyWWImXmdnQkGolZT4rIp4kZITUBL/preview", dl: "https://drive.google.com/uc?export=download&id=1E_jcyWWImXmdnQkGolZT4rIp4kZITUBL" },
+                        { epNum: "Ep 15", watch: "https://drive.google.com/file/d/1ePv2s1sBf6Wyw_85JLWP42bQQMBTA7lv/preview", dl: "https://drive.google.com/uc?export=download&id=1ePv2s1sBf6Wyw_85JLWP42bQQMBTA7lv" },
+                        { epNum: "Ep 16", watch: "https://drive.google.com/file/d/1MF8aIPyegQmH_qB6aNVtS99Pvj7FyM4d/preview", dl: "https://drive.google.com/uc?export=download&id=1MF8aIPyegQmH_qB6aNVtS99Pvj7FyM4d" },
+                        { epNum: "Ep 17", watch: "https://drive.google.com/file/d/1YODeaUB8F3bz9afhuEtT6Wh79n6S2oAh/preview", dl: "https://drive.google.com/uc?export=download&id=1YODeaUB8F3bz9afhuEtT6Wh79n6S2oAh" },
+                        { epNum: "Ep 18", watch: "https://drive.google.com/file/d/1mrRI6SzVE5up0ZiuCjlnEScxN0JPQrzh/preview", dl: "https://drive.google.com/uc?export=download&id=1mrRI6SzVE5up0ZiuCjlnEScxN0JPQrzh" },
+                        { epNum: "Ep 19", watch: "https://drive.google.com/file/d/116Xh2z9dZJF-GYPMeSkxI_OrMFokoEHC/preview", dl: "https://drive.google.com/uc?export=download&id=116Xh2z9dZJF-GYPMeSkxI_OrMFokoEHC" },
+                        { epNum: "Ep 20", watch: "https://drive.google.com/file/d/1XV4727pSGPfr8Kn47DATzsxvN7a8jawb/preview", dl: "https://drive.google.com/uc?export=download&id=1XV4727pSGPfr8Kn47DATzsxvN7a8jawb" }
+                    ] 
+                }]
+            },
+            { 
+                name: "My Hero Academia", 
+                genre: "Action", 
+                section: "both",
+                badge: "4K POPULAR",
+                rating: "⭐ 4.7", 
+                views: "👁️ 130K", 
+                img: "https://i.ibb.co/ycSJpsXB/IMG-9398c472-5d35-49ce-8ab1-acf78b2774ab.jpg", 
+                desc: "A quirkless boy Izuku Midoriya inherits powers to become the greatest hero.",
+                seasons: [{
+                    seasonTitle: "Season 1 (13 Episodes)",
+                    episodes: [
+                        { epNum: "Ep 1", watch: "https://drive.google.com/file/d/1WuXmGr6mL2CQYPfHGSo3atYqiWdpAVsT/preview", dl: "https://drive.google.com/uc?export=download&id=1WuXmGr6mL2CQYPfHGSo3atYqiWdpAVsT" },
+                        { epNum: "Ep 2", watch: "https://drive.google.com/file/d/1S7k0KvdwcD9zG0H7gs-F_DYSbyraV7ur/preview", dl: "https://drive.google.com/uc?export=download&id=1S7k0KvdwcD9zG0H7gs-F_DYSbyraV7ur" },
+                        { epNum: "Ep 3", watch: "https://drive.google.com/file/d/1GK05ENZKkvN6aC4_bGMyXnse7pr_KhcP/preview", dl: "https://drive.google.com/uc?export=download&id=1GK05ENZKkvN6aC4_bGMyXnse7pr_KhcP" },
+                        { epNum: "Ep 4", watch: "https://drive.google.com/file/d/1m7oNvoi9P9N5Sk2y7H7VjcBnZqytHYZX/preview", dl: "https://drive.google.com/uc?export=download&id=1m7oNvoi9P9N5Sk2y7H7VjcBnZqytHYZX" },
+                        { epNum: "Ep 5", watch: "https://drive.google.com/file/d/1lTNM4Ieu_SZY-RuQV1CKPAMd0TJVrRw1/preview", dl: "https://drive.google.com/uc?export=download&id=1lTNM4Ieu_SZY-RuQV1CKPAMd0TJVrRw1" },
+                        { epNum: "Ep 6", watch: "https://drive.google.com/file/d/1_U0bT4aCzVOznPcNeNPpOuc-Q-h2-Mw-/preview", dl: "https://drive.google.com/uc?export=download&id=1_U0bT4aCzVOznPcNeNPpOuc-Q-h2-Mw-" },
+                        { epNum: "Ep 7", watch: "https://drive.google.com/file/d/1S5IXIoMa7e6x6gg5EKI5i5PclEUYbH8L/preview", dl: "https://drive.google.com/uc?export=download&id=1S5IXIoMa7e6x6gg5EKI5i5PclEUYbH8L" },
+                        { epNum: "Ep 8", watch: "https://drive.google.com/file/d/1B2C0-I_AqpJZ9DHtyEvrITtvb9KZwDUO/preview", dl: "https://drive.google.com/uc?export=download&id=1B2C0-I_AqpJZ9DHtyEvrITtvb9KZwDUO" },
+                        { epNum: "Ep 9", watch: "https://drive.google.com/file/d/17nk0R-pnbh-2ZVzJCOTQGgqR76HMiMWe/preview", dl: "https://drive.google.com/uc?export=download&id=17nk0R-pnbh-2ZVzJCOTQGgqR76HMiMWe" },
+                        { epNum: "Ep 10", watch: "https://drive.google.com/file/d/11xozJv7Z-nW3OhLcbDv7FmQNmZjd88dj/preview", dl: "https://drive.google.com/uc?export=download&id=11xozJv7Z-nW3OhLcbDv7FmQNmZjd88dj" },
+                        { epNum: "Ep 11", watch: "https://drive.google.com/file/d/1A5SvlWplL0lJTBQaCwYKCYy4KQX1Zxz2/preview", dl: "https://drive.google.com/uc?export=download&id=1A5SvlWplL0lJTBQaCwYKCYy4KQX1Zxz2" },
+                        { epNum: "Ep 12", watch: "https://drive.google.com/file/d/1a4ChxGVltif8sxemgXMWjq5eMYmGu8Bg/preview", dl: "https://drive.google.com/uc?export=download&id=1a4ChxGVltif8sxemgXMWjq5eMYmGu8Bg" },
+                        { epNum: "Ep 13", watch: "https://drive.google.com/file/d/1unf5bJF_yuzZiPossr14jMtqKFRvFaIq/preview", dl: "https://drive.google.com/uc?export=download&id=1unf5bJF_yuzZiPossr14jMtqKFRvFaIq" }
+                    ]
+                }]
+            },
+            { 
+                name: "Black Clover", 
+                genre: "Fantasy", 
+                section: "both",
+                badge: "4K HD",
+                rating: "⭐ 4.8", 
+                views: "👁️ 115K", 
+                img: "https://i.ibb.co/sJdqh3mM/IMG-1914578d-d74c-4940-8cf5-23d69aa35cb2.jpg", 
+                desc: "A boy born without magic aims to become the Wizard King.",
+                seasons: [{ seasonTitle: "Season 1", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Weathering With You", 
+                genre: "Romance", 
+                section: "popular",
+                badge: "4K POPULAR",
+                rating: "⭐ 4.9", 
+                views: "👁️ 140K", 
+                img: "https://i.ibb.co/pjy5sH2m/IMG-1fdb3440-7fb8-45ba-a53e-41346a4a4afc.jpg", 
+                desc: "A high-school boy who runs away to Tokyo befriends a girl who can manipulate weather.",
+                seasons: [{ seasonTitle: "Movie Parts", episodes: [ { epNum: "Part 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Solo Leveling", 
+                genre: "Fantasy", 
+                section: "both",
+                badge: "POPULAR",
+                rating: "⭐ 4.9", 
+                views: "👁️ 150K", 
+                img: "https://i.ibb.co/Z1SzCVYV/9f9791ea-ca78-4a67-b55b-a5a8d8342dc5.jpg", 
+                desc: "Weakest hunter gets a mysterious system to level up infinitely.",
+                seasons: [{ seasonTitle: "Season 1", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Spy x Family", 
+                genre: "Comedy", 
+                section: "popular",
+                badge: "4K HD",
+                rating: "⭐ 4.8", 
+                views: "👁️ 125K", 
+                img: "https://i.ibb.co/fVfZs3Rn/Spy-family-poster.jpg", 
+                desc: "A spy builds a fake family for a mission, not knowing his wife is an assassin and daughter a telepath.",
+                seasons: [{ seasonTitle: "Season 1", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Jujutsu Kaisen", 
+                genre: "Action", 
+                section: "both",
+                badge: "4K HD",
+                rating: "⭐ 4.9", 
+                views: "👁️ 180K", 
+                img: "https://i.ibb.co/k2BBTZnW/e52e1db3-7e9e-42c2-8b8b-cdd284f87289.jpg", 
+                desc: "Curses, sorcery, and intense supernatural battles in modern society.",
+                seasons: [{ seasonTitle: "Season 1", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Attack on Titan", 
+                genre: "Action", 
+                section: "both",
+                badge: "4K POPULAR",
+                rating: "⭐ 5.0", 
+                views: "👁️ 300K", 
+                img: "https://i.ibb.co/ZRNfyb0Z/b5d3ae7f-0b8c-4b9a-a3b6-af0b7a813711.jpg", 
+                desc: "Humanity fights for survival against terrifying giant humanoid Titans.",
+                seasons: [{ seasonTitle: "Season 1", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Haikyuu!!", 
+                genre: "Sports", 
+                section: "popular",
+                badge: "4K HD",
+                rating: "⭐ 4.7", 
+                views: "👁️ 80K", 
+                img: "https://i.ibb.co/Jw3QvPXn/256b39bc-eae8-4ef8-8916-d9883df0c875.jpg", 
+                desc: "High school volleyball team aiming for the nationals.",
+                seasons: [{ seasonTitle: "Season 1", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "One Piece", 
+                genre: "Adventure", 
+                section: "both",
+                badge: "ONGOING",
+                rating: "⭐ 5.0", 
+                views: "👁️ 250K", 
+                img: "https://i.ibb.co/G4BmZVKq/74e9c8c4-2cb1-47f0-aa07-0a55b0c302d0.jpg", 
+                desc: "Luffy sets sail with his pirate crew to find the legendary One Piece.",
+                seasons: [{ seasonTitle: "East Blue Saga", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Your Name.", 
+                genre: "Romance", 
+                section: "both",
+                badge: "4K POPULAR",
+                rating: "⭐ 5.0", 
+                views: "👁️ 350K", 
+                img: "https://i.ibb.co/xSFJ1t7P/0e31e9e7-2ef5-4287-8024-8e5959fe7d99.jpg", 
+                desc: "Two teenagers share a profound, magical connection upon discovering they are swapping bodies.",
+                seasons: [{ seasonTitle: "Movie Parts", episodes: [ { epNum: "Part 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            }
+        ];
+
+        /* ==========================================================================
+           18+ HENTAI HUB DATABASE (YOASOBI GURASHI + OVERFLOW)
+           ========================================================================== */
+        const hentaiData = [
+            { 
+                name: "Yoasobi Gurashi", 
+                genre: "Romance", 
+                badge: "18+ POPULAR",
+                rating: "⭐ 4.9", 
+                views: "👁️ 210K", 
+                img: "https://i.ibb.co/XxJhnrGG/000000037-vertical-with-logo-jpg.webp", 
+                desc: "A gripping late-night romantic drama featuring intense character interactions.",
+                seasons: [{ seasonTitle: "Special Edition", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" }, { epNum: "Ep 2", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            },
+            { 
+                name: "Overflow", 
+                genre: "Romance", 
+                badge: "18+ 4K",
+                rating: "⭐ 4.9", 
+                views: "👁️ 500K", 
+                img: "https://i.ibb.co/XfBV7h69/IMG-abdcac16-0e20-41fc-b147-722cfc262f5a.jpg", 
+                desc: "Kazushi finds himself taking an unexpected bath with his childhood friends who harbor secret feelings.",
+                seasons: [{ seasonTitle: "Special Uncensored", episodes: [ { epNum: "Ep 1", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" }, { epNum: "Ep 2", watch: "https://www.youtube.com/embed/dQw4w9WgXcQ", dl: "#" } ] }]
+            }
+        ];
+
+        let currentActiveAnimeName = null;
+        let currentEpisodeList = [];
+        let currentEpisodeIndex = 0;
+
+        /* ==========================================================================
+           SCROLL TO TOP
+           ========================================================================== */
+        function scrollToTopSmooth(e) {
+            if (e) e.preventDefault();
+
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            if (document.scrollingElement) {
+                document.scrollingElement.scrollTop = 0;
+            }
+
+            requestAnimationFrame(() => {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 25) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        function updateSavedBadge() {
+            let savedList = JSON.parse(localStorage.getItem('savedAnimeWeb') || '[]');
+            document.getElementById('savedBadge').innerText = savedList.length;
+        }
+
+        /* ==========================================================================
+           RENDER POPULAR & ONGOING SECTIONS
+           ========================================================================== */
+        function createCardHTML(item, isHentai = false, hentaiIdx = 0) {
+            let originalIndex = animeData.findIndex(a => a.name === item.name);
+            let clickAction = isHentai ? `openHentaiModal(${hentaiIdx})` : `openModal(${originalIndex})`;
+            let badgeClass = (item.badge && (item.badge.includes('18+') || item.badge.includes('POPULAR') || item.badge.includes('ONGOING'))) ? 'card-badge hot' : 'card-badge';
+
+            return `
+                <div class="anime-card" onclick="${clickAction}">
+                    ${item.badge ? `<div class="${badgeClass}">${item.badge}</div>` : ''}
+                    <img src="${item.img}" alt="${item.name}" loading="lazy">
+                    <div class="anime-info">
+                        <div class="anime-title">${item.name}</div>
+                        <div class="card-meta">
+                            <span>${item.rating}</span>
+                            <span>${item.views}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSections(data) {
+            const popularScroll = document.getElementById('popularScroll');
+            const popularGrid = document.getElementById('popularGrid');
+            const trendingVerticalGrid = document.getElementById('trendingVerticalGrid');
+
+            let popularItems = data.filter(item => item.section === 'popular' || item.section === 'both' || !item.section);
+            let ongoingItems = data.filter(item => item.section === 'ongoing' || item.section === 'both' || item.genre === 'Action' || item.genre === 'Fantasy');
+
+            const popularHTML = popularItems.map(item => createCardHTML(item)).join('');
+            popularScroll.innerHTML = popularHTML || `<div style="color:var(--text-muted); padding:20px;">No anime found matching your filter.</div>`;
+            popularGrid.innerHTML = popularHTML;
+
+            const ongoingHTML = ongoingItems.map(item => createCardHTML(item)).join('');
+            trendingVerticalGrid.innerHTML = ongoingHTML || `<div style="color:var(--text-muted); padding:20px;">No ongoing anime found.</div>`;
+        }
+
+        renderSections(animeData);
+        updateSavedBadge();
+
+        /* ==========================================================================
+           DRAWER, PHONEPE & 18+ HENTAI HUB CONTROLS
+           ========================================================================== */
+        function toggleSideDrawer() {
+            let drawer = document.getElementById('sidedrawer');
+            let overlay = document.getElementById('drawerOverlay');
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                overlay.style.display = 'none';
+            } else {
+                drawer.classList.add('open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        function payViaPhonePe() {
+            alert("📲 Scan the QR code inside the menu using PhonePe / GPay / Paytm to support AnimeWeb!");
+        }
+
+        function promptHentaiPassword() {
+            document.getElementById('passModal').style.display = 'flex';
+            setTimeout(() => document.getElementById('hentaiPassInput').focus(), 100);
+        }
+
+        function closePassModal() {
+            document.getElementById('passModal').style.display = 'none';
+        }
+
+        function verifyHentaiPassword() {
+            let pass = document.getElementById('hentaiPassInput').value.trim();
+            if (pass === "9209") {
+                closePassModal();
+                const hentaiSection = document.getElementById('hentaiSection');
+                hentaiSection.style.display = 'block';
+                
+                const hentaiGrid = document.getElementById('hentaiGrid');
+                hentaiGrid.innerHTML = hentaiData.map((item, idx) => createCardHTML(item, true, idx)).join('');
+
+                hentaiSection.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('hentaiPassInput').value = '';
+            } else {
+                alert("❌ Incorrect Password! Please enter valid PIN.");
+            }
+        }
+
+        function lockHentaiSection() {
+            document.getElementById('hentaiSection').style.display = 'none';
+            scrollToTopSmooth();
+        }
+
+        /* ==========================================================================
+           SAVED WATCHLIST MODAL
+           ========================================================================== */
+        function openSavedModal() {
+            let savedList = JSON.parse(localStorage.getItem('savedAnimeWeb') || '[]');
+            let container = document.getElementById('savedListContainer');
+
+            if (savedList.length === 0) {
+                container.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding:20px;">No saved anime yet. Click "🔖 Save Anime" inside any anime!</div>`;
+            } else {
+                container.innerHTML = savedList.map(name => `
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:#130b22; padding:12px 15px; border-radius:12px; border:1px solid var(--border-color);">
+                        <span style="font-weight:800; color:var(--accent-light);">${name}</span>
+                        <button class="ep-btn" onclick="closeSavedModal(); openModalByName('${name.replace(/'/g, "\\'")}')">▶ Watch</button>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('savedModal').style.display = 'flex';
+        }
+
+        function closeSavedModal() {
+            document.getElementById('savedModal').style.display = 'none';
+        }
+
+        /* ==========================================================================
+           SECURE DOWNLOAD & IN-APP EPISODE PLAYER
+           ========================================================================== */
+        function triggerSecureDownload(downloadUrl) {
+            if (!downloadUrl || downloadUrl === "#") {
+                alert("📥 Direct Google Drive download link will be updated soon for this episode!");
+                return;
+            }
+            let modal = document.getElementById('secModal');
+            let statusText = document.getElementById('secStatusText');
+            modal.style.display = 'flex';
+            
+            statusText.innerText = "Scanning Google Drive link safety...";
+            setTimeout(() => {
+                statusText.innerText = "Security passed! Starting direct download...";
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    let a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.target = "_blank";
+                    a.setAttribute('download', '');
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }, 900);
+            }, 1100);
+        }
+
+        function playEpisodeInApp(watchUrl, epIndex = 0, epName = "Ep 1") {
+            currentEpisodeIndex = epIndex;
+            let playerContainer = document.getElementById('playerContainer');
+            let quickControls = document.getElementById('playerQuickControls');
+            let videoFrame = document.getElementById('videoPlayerFrame');
+            
+            videoFrame.src = watchUrl;
+            playerContainer.style.display = 'block';
+            quickControls.style.display = 'flex';
+            document.getElementById('nowPlayingIndicator').innerText = `Playing ${epName}`;
+            playerContainer.scrollIntoView({ behavior: 'smooth' });
+
+            if (currentActiveAnimeName) {
+                let watched = JSON.parse(localStorage.getItem('watchedEpisodesByName') || '{}');
+                if (!watched[currentActiveAnimeName]) watched[currentActiveAnimeName] = [];
+                if (!watched[currentActiveAnimeName].includes(epIndex)) {
+                    watched[currentActiveAnimeName].push(epIndex);
+                    localStorage.setItem('watchedEpisodesByName', JSON.stringify(watched));
+                }
+            }
+        }
+
+        function playNextEpisode() {
+            if (currentEpisodeList.length > 0 && currentEpisodeIndex < currentEpisodeList.length - 1) {
+                currentEpisodeIndex++;
+                let nextEp = currentEpisodeList[currentEpisodeIndex];
+                playEpisodeInApp(nextEp.watch, currentEpisodeIndex, nextEp.epNum);
+            } else {
+                alert("This is the last available episode!");
+            }
+        }
+
+        function playPreviousEpisode() {
+            if (currentEpisodeList.length > 0 && currentEpisodeIndex > 0) {
+                currentEpisodeIndex--;
+                let prevEp = currentEpisodeList[currentEpisodeIndex];
+                playEpisodeInApp(prevEp.watch, currentEpisodeIndex, prevEp.epNum);
+            } else {
+                alert("This is the first episode!");
+            }
+        }
+
+        function togglePopularViewAll() {
+            let grid = document.getElementById('popularGrid');
+            let scroll = document.getElementById('popularScroll');
+            let btn = document.getElementById('popularToggleBtn');
+            if (grid.style.display === 'none') {
+                grid.style.display = 'grid';
+                scroll.style.display = 'none';
+                btn.innerText = "Scroll View <";
+            } else {
+                grid.style.display = 'none';
+                scroll.style.display = 'flex';
+                btn.innerText = "View All >";
+            }
+        }
+
+        function setActiveNav(element) {
+            document.querySelectorAll('.bottom-nav-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        /* ==========================================================================
+           BANNER SLIDER LOGIC
+           ========================================================================== */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.banner-dot');
+
+        function goToSlide(index) {
+            if (slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (slides.length > 0) {
+                goToSlide((currentSlide + 1) % slides.length);
+            }
+        }
+        setInterval(nextSlide, 4800);
+
+        /* ==========================================================================
+           MODAL OPEN / CLOSE & EPISODE LIST RENDERING
+           ========================================================================== */
+        function openModal(index) {
+            const anime = animeData[index];
+            if (!anime) return;
+            setupModalContent(anime);
+        }
+
+        function openHentaiModal(index) {
+            const anime = hentaiData[index];
+            if (!anime) return;
+            setupModalContent(anime);
+        }
+
+        function openModalByName(name) {
+            let anime = animeData.find(a => a.name === name) || hentaiData.find(h => h.name === name);
+            if (anime) setupModalContent(anime);
+        }
+
+        function setupModalContent(anime) {
+            currentActiveAnimeName = anime.name;
+            document.getElementById('modalImg').src = anime.img;
+            document.getElementById('modalTitle').innerText = anime.name;
+            document.getElementById('modalDetails').innerText = anime.desc + " | " + anime.rating + " | " + anime.views;
+            
+            document.getElementById('playerContainer').style.display = 'none';
+            document.getElementById('playerQuickControls').style.display = 'none';
+            document.getElementById('videoPlayerFrame').src = '';
+
+            currentEpisodeList = [];
+            anime.seasons.forEach(s => s.episodes.forEach(e => currentEpisodeList.push(e)));
+
+            let savedList = JSON.parse(localStorage.getItem('savedAnimeWeb') || '[]');
+            let saveBtn = document.getElementById('saveBtn');
+            if (savedList.includes(anime.name)) {
+                saveBtn.innerText = "✅ Saved";
+                saveBtn.classList.add('saved');
+            } else {
+                saveBtn.innerText = "🔖 Save Anime";
+                saveBtn.classList.remove('saved');
+            }
+
+            resetStars();
+            
+            let watched = JSON.parse(localStorage.getItem('watchedEpisodesByName') || '{}');
+            let watchedArr = watched[anime.name] || [];
+
+            let seasonsHTML = `<div style="font-size:14px; font-weight:800; color:var(--accent-light); margin-bottom:12px; text-align:left;">Select Season (${anime.seasons.length} Available)</div>`;
+            
+            let epCounter = 0;
+            anime.seasons.forEach((season, sIdx) => {
+                let epRowsHTML = '';
+                season.episodes.forEach((ep) => {
+                    let isWatched = watchedArr.includes(epCounter);
+                    let rowClass = isWatched ? 'ep-row watched' : 'ep-row';
+                    let watchText = isWatched ? '✓ Watched' : '▶ Watch';
+
+                    epRowsHTML += `
+                        <div class="${rowClass}">
+                            <span><b>${ep.epNum}</b> ${isWatched ? '<span style="color:var(--accent-cyan); font-size:11px;">(Watched)</span>' : ''}</span>
+                            <div class="ep-btn-group">
+                                <button class="ep-btn" onclick="playEpisodeInApp('${ep.watch}', ${epCounter}, '${ep.epNum}')">${watchText}</button>
+                                <button class="ep-btn dl-btn" onclick="triggerSecureDownload('${ep.dl}')">📥 Download</button>
+                            </div>
+                        </div>
+                    `;
+                    epCounter++;
+                });
+
+                seasonsHTML += `
+                    <div>
+                        <button class="season-select-btn" onclick="toggleSeasonPanel('season-panel-${sIdx}')">
+                            <span>${season.seasonTitle}</span>
+                            <span>▼</span>
+                        </button>
+                        <div id="season-panel-${sIdx}" class="episodes-panel" style="display:${sIdx===0?'block':'none'};">
+                            ${epRowsHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('modalSeasonsBox').innerHTML = seasonsHTML;
+            loadComments(anime.name);
+            document.getElementById('animeModal').style.display = 'flex';
+        }
+
+        function toggleSaveAnime() {
+            if (!currentActiveAnimeName) return;
+            const animeName = currentActiveAnimeName;
+            let savedList = JSON.parse(localStorage.getItem('savedAnimeWeb') || '[]');
+            let saveBtn = document.getElementById('saveBtn');
+
+            let index = savedList.indexOf(animeName);
+            if (index > -1) {
+                savedList.splice(index, 1);
+                saveBtn.innerText = "🔖 Save Anime";
+                saveBtn.classList.remove('saved');
+            } else {
+                savedList.push(animeName);
+                saveBtn.innerText = "✅ Saved";
+                saveBtn.classList.add('saved');
+            }
+            localStorage.setItem('savedAnimeWeb', JSON.stringify(savedList));
+            updateSavedBadge();
+        }
+
+        function rateAnime(stars) {
+            let starElements = document.querySelectorAll('#starContainer span');
+            starElements.forEach((el, idx) => {
+                if (idx < stars) {
+                    el.classList.add('active-star');
+                } else {
+                    el.classList.remove('active-star');
+                }
+            });
+            document.getElementById('ratingFeedback').innerText = `⭐ Thank you! You rated ${stars}/5 stars.`;
+        }
+
+        function resetStars() {
+            let starElements = document.querySelectorAll('#starContainer span');
+            starElements.forEach(el => el.classList.remove('active-star'));
+            document.getElementById('ratingFeedback').innerText = "Click stars to vote!";
+        }
+
+        function postComment() {
+            if (!currentActiveAnimeName) return;
+            const animeName = currentActiveAnimeName;
+            let user = document.getElementById('commentUser').value.trim();
+            let text = document.getElementById('commentText').value.trim();
+
+            if (!user || !text) {
+                alert("Please enter both your name and comment!");
+                return;
+            }
+
+            let allComments = JSON.parse(localStorage.getItem('animeWebComments') || '{}');
+            if (!allComments[animeName]) allComments[animeName] = [];
+
+            allComments[animeName].unshift({ user, text, time: new Date().toLocaleDateString() });
+            localStorage.setItem('animeWebComments', JSON.stringify(allComments));
+
+            document.getElementById('commentUser').value = '';
+            document.getElementById('commentText').value = '';
+            loadComments(animeName);
+        }
+
+        function loadComments(animeName) {
+            let allComments = JSON.parse(localStorage.getItem('animeWebComments') || '{}');
+            let animeComments = allComments[animeName] || [];
+            let commentsList = document.getElementById('commentsList');
+
+            if (animeComments.length === 0) {
+                commentsList.innerHTML = `<div style="font-size:12px; color:var(--text-muted); text-align:center; padding:10px;">No reviews yet. Be the first fan to review!</div>`;
+                return;
+            }
+
+            commentsList.innerHTML = animeComments.map(c => `
+                <div class="comment-item">
+                    <div class="comment-user">👤 ${c.user} <span style="font-size:10px; color:var(--text-muted); font-weight:400;">• ${c.time || ''}</span></div>
+                    <div>${c.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleSeasonPanel(panelId) {
+            let panel = document.getElementById(panelId);
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                let allPanels = document.querySelectorAll('.episodes-panel');
+                allPanels.forEach(p => p.style.display = 'none');
+                panel.style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('animeModal').style.display = 'none';
+            document.getElementById('videoPlayerFrame').src = '';
+            currentActiveAnimeName = null;
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('animeModal');
+            let savedModal = document.getElementById('savedModal');
+            if (event.target === modal) closeModal();
+            if (event.target === savedModal) closeSavedModal();
+        }
+
+        function searchAnime() {
+            let inputEl = document.getElementById('searchInput');
+            let clearBtn = document.getElementById('searchClearBtn');
+            let input = inputEl.value.toLowerCase().trim();
+            
+            clearBtn.style.display = input.length > 0 ? 'block' : 'none';
+            let filtered = animeData.filter(item => item.name.toLowerCase().includes(input));
+            renderSections(filtered);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchClearBtn').style.display = 'none';
+            renderSections(animeData);
+        }
+
+        function filterGenre(genre, btnEl) {
+            let buttons = document.querySelectorAll('.genre-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+
+            if (genre === 'all') {
+                renderSections(animeData);
+            } else {
+                let filtered = animeData.filter(item => item.genre === genre);
+                renderSections(filtered);
+            }
+        }
+    </script>
+</body>
+</html>
